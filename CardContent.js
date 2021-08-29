@@ -1,4 +1,4 @@
-export const colors = ["Red", "Yellow", "Blue", "Green"];
+export const colors = ["red", "yellow", "blue", "green"];
 
 export const kinds = [
     { imprint: "0", qtd: 1, colored: true },

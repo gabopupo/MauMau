@@ -4,6 +4,9 @@ export default class Player {
         this._name = name;
         this.deckSize = 7;
         this.deck = pile.splice(0, this.deckSize);
+        this.deckElement = document.createElement('div');
+        this.deckElement.classList.add('deck');
+        document.body.appendChild(this.deckElement);
     }
 
     set name(name) {
@@ -19,5 +22,11 @@ export default class Player {
         for (const card of this.deck)
             message += `\t${card.toString()}\n`;
         return message;
+    }
+
+    instantiateDeck() {
+        for (const card of this.deck) {
+            this.deckElement.appendChild(card.instantiate());
+        }
     }
 }

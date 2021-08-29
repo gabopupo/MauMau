@@ -8,3 +8,5 @@ const playerB = new Player("Bob", pile.cards);
 
 console.log(playerA.toString());
 console.log(playerB.toString());
+
+playerA.instantiateDeck();

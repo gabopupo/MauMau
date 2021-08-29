@@ -1,0 +1,115 @@
+@font-face {
+    font-family: SonsieOne;
+    src: url("/assets/SonsieOne-Regular.ttf");
+}
+
+.card-front {
+    width: 7rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-front-kind {
+    width: 40%;
+    height: 40%;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 4rem;
+    font-family: SonsieOne, cursive;
+    font-size: 1.6rem;
+}
+
+.card-red {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 27%, red 95%);
+    color: red;
+}
+
+.card-green {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 27%, green 95%);
+    color: green;
+}
+
+.card-blue {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 27%, blue 95%);
+    color: blue;
+}
+
+.card-yellow {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 27%, gold 95%);
+    color: gold;
+}
+
+.card-black {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 27%, black 95%);
+    color: black;
+}
+
+.card-any {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    position: relative;
+    display: grid;
+    grid-template-areas:
+        "r g"
+        "b y";
+}
+
+.card-any-red {
+    border: 3px solid red;
+    background-color: red;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 0;
+    border-bottom: 0;
+    grid-area: "r";
+}
+
+.card-any-green {
+    border: 3px solid green;
+    background-color: green;
+    border-top-left-radius: 0;
+    border-top-right-radius: 100px;
+    border-bottom: 0;
+    grid-area: "g";
+}
+
+.card-any-blue {
+    border: 3px solid blue;
+    background-color: blue;
+    border-top: 0;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 0;
+    grid-area: "b";
+}
+
+.card-any-yellow {
+    border: 3px solid gold;
+    background-color: gold;
+    border-top: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 100px;
+    grid-area: "y";
+}
+
+.card-plus-four {
+    position: absolute;
+    top: 0;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+.deck {
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+}
