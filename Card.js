@@ -1,7 +1,11 @@
+import GameArea from "./GameArea.js";
+import MyPlayer from "./MyPlayer.js";
+
 export default class Card {
     constructor(color, kind) {
         this._color = color;
         this._kind = kind;
+        this._deckPosition = -1;
     }
 
     get color() {
@@ -12,12 +16,20 @@ export default class Card {
         return this._kind;
     }
 
+    get deckPosition() {
+        return this._deckPosition;
+    }
+
     set color(color) {
         this._color = color;
     }
 
     set kind(kind) {
         this._kind = kind;
+    }
+
+    set deckPosition(deckPosition) {
+        this._deckPosition = deckPosition;
     }
 
     toString() {
@@ -83,6 +95,18 @@ export default class Card {
         }
         
         card.appendChild(cardKind);
+
+        card.addEventListener("click", () => {
+            MyPlayer.deck.splice(this.deckPosition, 1);
+            MyPlayer.deckElement.removeChild(card);
+
+            this.deckPosition = -1;
+            GameArea.discardPile.cards.push(this);
+
+            GameArea.discardPile.element.firstChild?.remove();
+            GameArea.discardPile.element.appendChild(this.instantiate());
+        });
+
         return card;
     }
 }

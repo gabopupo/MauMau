@@ -113,3 +113,30 @@
     display: flex;
     justify-content: center;
 }
+
+.game-area {
+    height: 10rem;
+    width: 20rem;
+    
+    position: absolute;
+    top: calc(50vh - 5rem);
+    left: calc(50vw - 10rem);
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.pile {
+    width: 7rem;
+    height: 10rem;
+}
+
+.card-back {
+    background-color: black;
+    box-sizing: border-box;
+    border: 10px solid red;
+}
+
+.card-back > span {
+    color: white;
+}
