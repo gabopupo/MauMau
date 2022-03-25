@@ -29,8 +29,6 @@ export default class Pile {
 
     instantiate() {
         let pile = document.createElement('div');
-
-        pile.classList.add('pile');
         
         this._element = pile;
     }

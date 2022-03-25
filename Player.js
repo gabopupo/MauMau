@@ -1,15 +1,18 @@
 import GameArea from "./GameArea.js";
 
 export default class Player {
-    constructor(name) {
+    constructor(name, me) {
         this._name = name;
+        this._me = me;
         this.deckSize = 7;
         this.deck = GameArea.drawPile.takeTopCards(this.deckSize);
-        this.deckElement = document.createElement('div');
-        this.deckElement.classList.add('deck');
-        document.body.appendChild(this.deckElement);
+        this._deckElement = document.createElement('div');
+        this._deckElement.classList.add('deck');
+        document.body.appendChild(this._deckElement);
 
         this.instantiateDeck();
+
+        GameArea.addPlayer(this);
     }
 
     set name(name) {
@@ -18,6 +21,22 @@ export default class Player {
 
     get name() {
         return this._name;
+    }
+
+    set deckElement(deckElement) {
+        this._deckElement = deckElement;
+    }
+
+    get deckElement() {
+        return this._deckElement;
+    }
+
+    set me(me) {
+        this._me = me;
+    }
+
+    get me() {
+        return this._me;
     }
 
     toString() {
@@ -32,7 +51,7 @@ export default class Player {
 
         for (const card of this.deck) {
             card.deckPosition = iterator++;
-            this.deckElement.appendChild(card.instantiate());
+            this._deckElement.appendChild(card.instantiate(this._me));
         }
     }
 }

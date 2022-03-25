@@ -61,7 +61,7 @@ export default class DrawPile extends Pile {
             const tookCard = this.takeTopCards(1);
             tookCard.deckPosition = MyPlayer.deck.length;
             MyPlayer.deck.push(tookCard);
-            MyPlayer.deckElement.appendChild(tookCard.instantiate());
+            MyPlayer.deckElement.appendChild(tookCard.instantiate(true));
         });
     }
 }

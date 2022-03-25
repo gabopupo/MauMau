@@ -105,13 +105,36 @@
 }
 
 .deck {
-    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.bottom {
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100vw;
+}
 
-    display: flex;
-    justify-content: center;
+.top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+.left {
+    position: absolute;
+    top: 50vh;
+    left: 0;
+    transform: translateY(-50%) translateX(-25%) rotate(90deg);
+}
+
+.right {
+    position: absolute;
+    top: 50vh;
+    right: 0;
+    transform: translateY(-50%) translateX(25%) rotate(90deg);
 }
 
 .game-area {
@@ -126,15 +149,12 @@
     justify-content: space-evenly;
 }
 
-.pile {
-    width: 7rem;
-    height: 10rem;
-}
-
 .card-back {
     background-color: black;
     box-sizing: border-box;
     border: 10px solid red;
+    width: 7rem;
+    height: 10rem;
 }
 
 .card-back > span {

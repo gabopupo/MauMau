@@ -1,3 +1,3 @@
 import Player from "./Player.js";
 
-export default new Player('Alice');
+export default new Player('Alice', true);

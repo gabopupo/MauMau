@@ -6,6 +6,7 @@ export default class Card {
         this._color = color;
         this._kind = kind;
         this._deckPosition = -1;
+        this._isMine = false;
     }
 
     get color() {
@@ -20,6 +21,10 @@ export default class Card {
         return this._deckPosition;
     }
 
+    get isMine() {
+        return this._isMine;
+    }
+
     set color(color) {
         this._color = color;
     }
@@ -30,6 +35,10 @@ export default class Card {
 
     set deckPosition(deckPosition) {
         this._deckPosition = deckPosition;
+    }
+
+    set isMine(isMine) {
+        this._isMine = isMine;
     }
 
     toString() {
@@ -61,42 +70,49 @@ export default class Card {
         return cardAnyColor;
     }
 
-    instantiate() {
+    instantiate(isMe) {
         let card = document.createElement('div');
-        
-        card.classList.add('card-front', `card-${this._color ? this._color : 'black'}`);
-        
-        let cardKind = document.createElement('div');
-        cardKind.classList.add('card-front-kind');
+        this._isMine = isMe;
 
-        switch (this._kind) {
-            case 'Skip':
-                cardKind.innerHTML = '🛇';
-                break;
-            case 'Reverse':
-                cardKind.innerHTML = '🗘';
-                break;
-            case 'Wild':
-                cardKind.appendChild(this.createAnyColorDiv());
-                break;
-            case '+4':
-                let cardAnyColor = this.createAnyColorDiv();
+        if (isMe) {
+            card.classList.add('card-front', `card-${this._color ? this._color : 'black'}`);
+            
+            let cardKind = document.createElement('div');
+            cardKind.classList.add('card-front-kind');
 
-                let cardPlusFour = document.createElement('div');
-                cardPlusFour.classList.add('card-plus-four');
-                cardPlusFour.innerHTML = '+4';
-                cardAnyColor.appendChild(cardPlusFour);
+            switch (this._kind) {
+                case 'Skip':
+                    cardKind.innerHTML = '🛇';
+                    break;
+                case 'Reverse':
+                    cardKind.innerHTML = '🗘';
+                    break;
+                case 'Wild':
+                    cardKind.appendChild(this.createAnyColorDiv());
+                    break;
+                case '+4':
+                    let cardAnyColor = this.createAnyColorDiv();
 
-                cardKind.appendChild(cardAnyColor);
-                break;
-            default:
-                cardKind.innerHTML = this._kind;
-                break;
+                    let cardPlusFour = document.createElement('div');
+                    cardPlusFour.classList.add('card-plus-four');
+                    cardPlusFour.innerHTML = '+4';
+                    cardAnyColor.appendChild(cardPlusFour);
+
+                    cardKind.appendChild(cardAnyColor);
+                    break;
+                default:
+                    cardKind.innerHTML = this._kind;
+                    break;
+            }
+            
+            card.appendChild(cardKind);
+        } else {
+            card.classList.add('card-back');
         }
-        
-        card.appendChild(cardKind);
 
         card.addEventListener("click", () => {
+            if (!this._isMine) return;
+            
             MyPlayer.deck.splice(this.deckPosition, 1);
             MyPlayer.deckElement.removeChild(card);
 
@@ -104,7 +120,7 @@ export default class Card {
             GameArea.discardPile.cards.push(this);
 
             GameArea.discardPile.element.firstChild?.remove();
-            GameArea.discardPile.element.appendChild(this.instantiate());
+            GameArea.discardPile.element.appendChild(this.instantiate(true));
         });
 
         return card;

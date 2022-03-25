@@ -6,6 +6,7 @@ class GameArea {
         this._drawPile = new DrawPile();
         this._discardPile = new DiscardPile();
         this._element = this.createGameArea();
+        this._players = new Array();
     }
 
     get drawPile() {
@@ -20,6 +21,10 @@ class GameArea {
         return this._element;
     }
 
+    get players() {
+        return this._players;
+    }
+
     set drawPile(drawPile) {
         this._drawPile = drawPile;
     }
@@ -32,6 +37,10 @@ class GameArea {
         this._element = element;
     }
 
+    set players(players) {
+        this._players = players;
+    }
+
     createGameArea() {
         const gameArea = document.createElement('div');
         gameArea.classList.add('game-area');
@@ -41,6 +50,25 @@ class GameArea {
         document.body.appendChild(gameArea);
 
         return gameArea;
+    }
+
+    addPlayer(player) {
+        this._players.push(player);
+        
+        switch (this._players.length) {
+            case 1:
+                player.deckElement.classList.add('bottom');
+                break;
+            case 2:
+                player.deckElement.classList.add('top');
+                break;
+            case 3:
+                player.deckElement.classList.add('left');
+                break;
+            case 4:
+                player.deckElement.classList.add('right');
+                break;
+        }
     }
 }
 
